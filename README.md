@@ -47,7 +47,7 @@ The app consists of multiple interactive features, including forecast visualizat
 ### Steps to Install and Run
 1. Clone the repository or download the source code.
 2. Make sure the necessary data files (`au_postcodes.csv` and `dwellings_backwards_estimated.xlsx`) are available in the root folder.
-3. Open `TerritoryApp.R` or equivalent script in RStudio.
+3. Open `app.R` or equivalent script in RStudio.
 4. Install required packages using the command:
    ```R
    install.packages(c("shiny", "dplyr", "readxl", "ggplot2", "plotly", "shinythemes", "shinycssloaders", "leaflet", "openxlsx"))
@@ -58,7 +58,7 @@ The app consists of multiple interactive features, including forecast visualizat
    ```
 6. The app will open in your default web browser.
 
-## Folder Structure
+## Structure
 - **au_postcodes.csv**: Contains Australian postcode data, including latitude, longitude, suburb, and state information.
 - **dwellings_backwards_estimated.xlsx**: Contains historical data related to dwellings and renovations.
 - **app.R**: Main script containing the Shiny app UI and server logic.
