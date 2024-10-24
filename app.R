@@ -81,9 +81,9 @@ ui <- navbarPage(
                     choices = c("Total Dwellings", "Detached Dwellings"), 
                     selected = "Total Dwellings"),
         
-        selectInput("postcode", "Select Postcode", choices = available_postcodes),
-        selectInput("start_year", "Select Start Year", choices = available_years),
-        selectInput("end_year", "Select End Year", choices = available_years),
+        selectInput("postcode2", "Select Postcode", choices = available_postcodes),
+        selectInput("start_year2", "Select Start Year", choices = available_years),
+        selectInput("end_year2", "Select End Year", choices = available_years),
         
         
         numericInput("calc_year", "Enter Target Year", value = 2030),
@@ -335,13 +335,13 @@ server <- function(input, output) {
   # Reactive function to calculate growth rate and forecast
   growth_rate_result <- eventReactive(input$run_calculation, {
     # Get the selected postcode and year columns from the selected dataset
-    data <- selected_data() %>% filter(Postcode %in% input$postcode)
-    start_year <- as.numeric(input$start_year)
-    end_year <- as.numeric(input$end_year)
+    data <- selected_data() %>% filter(Postcode %in% input$postcode2)
+    start_year <- as.numeric(input$start_year2)
+    end_year <- as.numeric(input$end_year2)
     
     # Extract the values for the selected years
-    y1 <- as.numeric(data[[input$start_year]])
-    y2 <- as.numeric(data[[input$end_year]])
+    y1 <- as.numeric(data[[input$start_year2]])
+    y2 <- as.numeric(data[[input$end_year2]])
     
     # Calculate the number of years between the start and end year
     years_interval <- end_year - start_year
