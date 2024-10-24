@@ -56,6 +56,10 @@ The app consists of multiple interactive features, including forecast visualizat
    ```R
    runApp("path/to/RenoPilot.Territory")
    ```
+   If you would like to run it in vscode, execute the following command within the dirctionary:
+   ```
+   rscript app.r
+   ```
 6. The app will open in your default web browser.
 
 ## Structure
