@@ -351,10 +351,10 @@ server <- function(input, output) {
     
     # Calculate years from start year to target year
     calc_year <- input$calc_year
-    years_to_calc <- calc_year - start_year
+    years_to_calc <- calc_year - end_year
     
     # Calculate dwellings for the target year
-    dwellings_target_year <- calculate_dwellings_forwards(growth_rate, y1, years_to_calc)
+    dwellings_target_year <- calculate_dwellings_forwards(growth_rate, y2, years_to_calc)
     
     # Generate interpolated data for the plot
     year_sequence <- seq(start_year, end_year, by = 1)
@@ -422,7 +422,7 @@ server <- function(input, output) {
   output$dynamic_inputs <- renderUI({
     lapply(1:rv$num_pairs, function(i) {
       tagList(
-        numericInput(paste0("year", i), label = HTML(paste("<span style='color: #16a085;'>Year", i, "</span>")), value = 1995 + (i - 1) * 5),
+        numericInput(paste0("year", i), label = HTML(paste("<span style='color: #16a085;'>Year", i, "</span>")), value = 1990 + (i - 1) * 5),
         numericInput(paste0("value", i), label = HTML(paste("<span style='color: #16a085;'>Dwelling Value in Year", i, "</span>")), value = 800 + (i - 1) * 100)
       )
     })
@@ -444,7 +444,8 @@ server <- function(input, output) {
     last_value <- values[1]
     last_year <- years[1]
     target_value <- last_value * (1 + growth_rate_last) ^ (input$target_year - last_year)
-    growth_rate_data <- data.frame("Start Year" = years[-length(years)], "End Year" = years[-1], "Growth Rate (%)" = round(growth_rates * 100, 2))
+    growth_rate_data <- data.frame("Start Year" = as.integer(years[-length(years)]), "End Year" = as.integer(years[-1]), "Growth Rate (%)" = round(growth_rates * 100, 2))
+    colnames(growth_rate_data) <- c("Start Year", "End Year", "Growth Rate (%)")
     output$growth_rate_table <- renderTable({growth_rate_data})
     output$growth_rate_used <- renderText({
       if (input$use_custom_growth_rate) {
